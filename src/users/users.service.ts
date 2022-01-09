@@ -48,7 +48,17 @@ export class UsersService {
   }
 
   async update(id: number, updateUserDto: UpdateUserDto) {
-    await this.usersRepository.update(id, updateUserDto);
+    let user : any = {};
+
+
+    if (!!updateUserDto.password) {
+      const hashpassword = await this.encrypt(updateUserDto.password);    
+      user.password = hashpassword;
+    }
+
+    return await this.usersRepository.update(id,{
+     ...updateUserDto, ...user.password
+    });
   }
 
   async remove(id: number) {

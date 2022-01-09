@@ -8,7 +8,7 @@ export class AuthService {
     constructor(private userService: UsersService, private jwtService: JwtService){}
 
     async login(user:any){
-        const userDB:any = this.userService.findUser({email:user.email});
+        const userDB:any = await this.userService.findUser({email:user.email});
         if (!!user)
         {
             const payload = {email:user.email, id:userDB._id};
