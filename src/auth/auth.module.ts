@@ -6,6 +6,7 @@ import { JwtStrategy } from './jwt.strategy';
 import { JwtModule } from '@nestjs/jwt';
 import { UsersModule } from 'src/users/users.module';
 import { jwtConstants } from './constants';
+import { RolesGuard } from './roles.guard';
 
 @Module({
   imports: [
