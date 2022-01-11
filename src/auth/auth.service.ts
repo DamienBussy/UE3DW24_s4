@@ -11,7 +11,7 @@ export class AuthService {
         const userDB:any = await this.userService.findUser({email:user.email});
         if (!!user)
         {
-            const payload = {email:user.email, id:userDB._id};
+            const payload = {email:user.email, id:userDB._id,roles:userDB.roles};
             if(await this.userService.hashCompare(user.password, userDB.password) == false){
                 return {message:"Not logged", error: true}
             }
